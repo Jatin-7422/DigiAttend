@@ -1,0 +1,167 @@
+.dashboard-page h1{
+  margin-bottom:30px;
+  color:#111827;
+}
+
+/* STATS GRID */
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+}
+
+/* CARD */
+
+.stat-card{
+  background:white;
+
+  padding:30px;
+
+  border-radius:20px;
+
+  box-shadow:0 5px 20px rgba(0,0,0,0.05);
+
+  transition:0.3s;
+}
+
+.stat-card:hover{
+  transform:translateY(-5px);
+}
+
+.stat-card h3{
+  color:#6b7280;
+  font-size:1rem;
+  margin-bottom:15px;
+}
+
+.stat-card h2{
+  font-size:2rem;
+  color:#111827;
+}
+
+/* ACTIVITY */
+
+.activity-section{
+  margin-top:40px;
+
+  background:white;
+
+  padding:30px;
+
+  border-radius:20px;
+
+  box-shadow:0 5px 20px rgba(0,0,0,0.05);
+}
+
+.activity-section h2{
+  margin-bottom:20px;
+}
+
+.activity-item{
+  padding:15px 0;
+
+  border-bottom:1px solid #e5e7eb;
+
+  color:#4b5563;
+}
+
+.activity-item:last-child{
+  border:none;
+}
+
+
+/* QR PAGE */
+
+.qr-input{
+  width:100%;
+
+  padding:15px;
+
+  margin-top:20px;
+
+  border:1px solid #d1d5db;
+
+  border-radius:12px;
+
+  font-size:1rem;
+
+  outline:none;
+}
+
+.generate-btn{
+  margin-top:20px;
+
+  padding:14px 25px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:#4f46e5;
+
+  color:white;
+
+  font-size:1rem;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.generate-btn:hover{
+  background:#4338ca;
+}
+
+.qr-container{
+  margin-top:40px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:20px;
+}
+
+.qr-container canvas{
+  padding:20px;
+  background:white;
+  border-radius:20px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.qr-container p{
+  color:#6b7280;
+}
+
+
+/* QR SCANNER */
+
+.scanner-container{
+  margin-top:30px;
+
+  overflow:hidden;
+
+  border-radius:20px;
+}
+
+.scan-result{
+  margin-top:30px;
+
+  padding:25px;
+
+  background:#ecfdf5;
+
+  border:1px solid #10b981;
+
+  border-radius:20px;
+}
+
+.scan-result h3{
+  color:#065f46;
+  margin-bottom:15px;
+}
+
+.scan-result p{
+  margin-bottom:10px;
+  color:#065f46;
+}

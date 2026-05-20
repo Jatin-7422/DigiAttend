@@ -1,0 +1,100 @@
+/* TABLETS */
+
+@media(max-width:992px){
+
+  .login-container{
+    width:95%;
+  }
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  /* LOGIN */
+
+  .login-container{
+    flex-direction:column;
+    height:auto;
+  }
+
+  .login-left{
+    padding:30px;
+  }
+
+  .login-left h1{
+    font-size:38px;
+  }
+
+  .login-left p{
+    font-size:15px;
+  }
+
+  .login-right{
+    padding:30px 0;
+  }
+
+  .login-form{
+    width:90%;
+  }
+
+
+  /* SIDEBAR */
+
+  .sidebar{
+    width:100%;
+    height:auto;
+
+    position:relative;
+
+    flex-direction:row;
+    justify-content:center;
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    padding:15px;
+  }
+
+  .logo{
+    width:100%;
+    text-align:center;
+    margin-bottom:10px;
+  }
+
+  .sidebar a{
+    background:rgba(255,255,255,0.08);
+
+    padding:10px 15px;
+
+    border-radius:10px;
+  }
+
+
+  /* DASHBOARD */
+
+  /* .dashboard{
+    flex-direction:column;
+  } */
+
+  .dashboard-content{
+    margin-left:0;
+    padding:15px;
+  }
+
+
+  /* NAVBAR */
+
+  .navbar{
+    flex-direction:column;
+
+    gap:15px;
+
+    height:auto;
+
+    padding:20px;
+  }
+
+}
