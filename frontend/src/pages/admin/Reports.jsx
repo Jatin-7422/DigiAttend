@@ -1,4 +1,4 @@
-import DashboardLayout from "../../components/Layout/Temp";
+import DashboardLayout from "../../components/Layout/DashboardLayout";
 
 function Reports() {
   return (

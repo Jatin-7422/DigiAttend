@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DashboardLayout from "../../components/Layout/Temp";
+import DashboardLayout from "../../components/Layout/DashboardLayout";
 
 function TeacherDashboard() {
   const [allRecords, setAllRecords] = useState([]);

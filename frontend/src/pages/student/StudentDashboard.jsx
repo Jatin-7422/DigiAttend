@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DashboardLayout from "../../components/Layout/DashboardLayout.jsx";
+import DashboardLayout from "../../components/Layout/DashboardLayout";
 import { auth } from "../../services/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import "../../styles/dashboard.css";

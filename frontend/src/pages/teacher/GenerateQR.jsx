@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { QRCodeSVG } from "qrcode.react";
-import DashboardLayout from "../../components/Layout/Temp";
+import DashboardLayout from "../../components/Layout/DashboardLayout";
 
 function GenerateQR() {
   const [subject, setSubject] = useState("");
