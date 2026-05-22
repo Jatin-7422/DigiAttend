@@ -14,6 +14,14 @@ router = APIRouter(
 async def mark_attendance(data: dict):
 
     # =========================
+    # CHNG MATCHING PARAMETERS: FALLBACK FOR FRONTEND KEYS
+    # =========================
+    # If the student app passes "timestamp", copy it to "createdAt" 
+    # so your validation loop below does not reject it.
+    if "createdAt" not in data and "timestamp" in data:
+        data["createdAt"] = data["timestamp"]
+
+    # =========================
     # VALIDATION CHECK
     # =========================
 
