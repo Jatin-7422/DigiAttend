@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Html5QrcodeScanner } from "html5-qrcode";
 
-import DashboardLayout from "../../components/layout/DashboardLayout";
+import DashboardLayout from "../../components/Layout/DashboardLayout";
 
 import axios from "axios";
 
