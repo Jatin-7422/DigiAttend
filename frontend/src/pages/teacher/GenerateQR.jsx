@@ -21,18 +21,39 @@ function GenerateQR() {
       return;
     }
 
-    // Create formal attendance session payload
-    const currentTime = new Date().toISOString();
+    // Check if the browser supports Geolocation API
+    if (!navigator.geolocation) {
+      alert(
+        "Geolocation is not supported by your browser. Cannot enforce geofencing.",
+      );
+      return;
+    }
 
-    const attendanceSession = {
-      subject,
-      timestamp: currentTime,
-      sessionId: Math.random().toString(36).substring(2, 10),
-      createdAt: currentTime,
-    };
+    // Request high-accuracy GPS coordinates from the teacher's device
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const currentTime = new Date().toISOString();
 
-    // Convert object → JSON string payload for the QR Scanner matrix
-    setQrData(JSON.stringify(attendanceSession));
+        const attendanceSession = {
+          subject,
+          timestamp: currentTime,
+          sessionId: Math.random().toString(36).substring(2, 10),
+          createdAt: currentTime,
+          teacherLat: position.coords.latitude, // <-- EMBED LATITUDE
+          teacherLon: position.coords.longitude, // <-- EMBED LONGITUDE
+        };
+
+        // Convert object → JSON string payload for the QR Scanner matrix
+        setQrData(JSON.stringify(attendanceSession));
+      },
+      (error) => {
+        console.error(error);
+        alert(
+          "Please enable location permissions to generate a geofenced attendance session.",
+        );
+      },
+      { enableHighAccuracy: true },
+    );
   };
 
   // Explicit, high-contrast inline styling scheme

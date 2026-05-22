@@ -34,29 +34,53 @@ function ScanQR() {
           // SAVE RESULT
           setScanResult(parsedData);
 
-          // CURRENT LOGGED-IN USER
-          const user = auth.currentUser;
+          // Check if browser supports Geolocation API
+          if (!navigator.geolocation) {
+            alert("Your device doesn't support geolocation tracking.");
+            return;
+          }
 
-          // FETCH USER DATA FROM FIRESTORE
-          const userDoc = await getDoc(doc(db, "users", user.uid));
-          const userData = userDoc.data();
+          // Fetch student's current coordinate metrics
+          navigator.geolocation.getCurrentPosition(
+            async (position) => {
+              // CURRENT LOGGED-IN USER
+              const user = auth.currentUser;
 
-          // SEND DATA TO FASTAPI BACKEND
-          const response = await axios.post(
-            "https://digiattend-backend.onrender.com/attendance/mark",
-            {
-              studentName: userData.name,
-              studentEmail: userData.email,
-              studentUID: user.uid,
-              subject: parsedData.subject,
-              sessionId: parsedData.sessionId,
-              timestamp: parsedData.timestamp,
-              createdAt: parsedData.createdAt || parsedData.timestamp, // <-- CRITICAL FIX: Sends the timestamp validation to your backend
+              // FETCH USER DATA FROM FIRESTORE
+              const userDoc = await getDoc(doc(db, "users", user.uid));
+              const userData = userDoc.data();
+
+              // SEND DATA TO FASTAPI BACKEND
+              const response = await axios.post(
+                "https://digiattend-backend.onrender.com/attendance/mark",
+                {
+                  studentName: userData.name,
+                  studentEmail: userData.email,
+                  studentUID: user.uid,
+                  subject: parsedData.subject,
+                  sessionId: parsedData.sessionId,
+                  timestamp: parsedData.timestamp,
+                  createdAt: parsedData.createdAt || parsedData.timestamp, // <-- CRITICAL FIX: Sends the timestamp validation to your backend
+
+                  // NEW GEOFENCING PAYLOAD SCHEMATICS
+                  studentLat: position.coords.latitude,
+                  studentLon: position.coords.longitude,
+                  teacherLat: parsedData.teacherLat,
+                  teacherLon: parsedData.teacherLon,
+                },
+              );
+
+              // SUCCESS ALERT
+              alert(response.data.message);
             },
+            (geoError) => {
+              console.error(geoError);
+              alert(
+                "Location access denied. You must enable GPS location permissions to mark attendance.",
+              );
+            },
+            { enableHighAccuracy: true },
           );
-
-          // SUCCESS ALERT
-          alert(response.data.message);
         } catch (error) {
           console.log(error);
           alert("Error Marking Attendance");

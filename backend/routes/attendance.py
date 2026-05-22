@@ -1,3 +1,4 @@
+import math
 from fastapi import APIRouter
 from datetime import datetime, timezone
 
@@ -7,6 +8,25 @@ router = APIRouter(
     prefix="/attendance",
     tags=["Attendance"]
 )
+
+# HELPER FUNCTION: Calculates distance between two GPS coordinates in meters
+def calculate_haversine_distance(lat1, lon1, lat2, lon2):
+    # Radius of the Earth in meters
+    R = 6371000.0 
+    
+    # Convert degrees to radians
+    phi1 = math.radians(lat1)
+    phi2 = math.radians(lat2)
+    delta_phi = math.radians(lat2 - lat1)
+    delta_lambda = math.radians(lon2 - lon1)
+    
+    # Haversine formula calculation
+    a = math.sin(delta_phi / 2.0)**2 + math.cos(phi1) * math.cos(phi2) * math.sin(delta_lambda / 2.0)**2
+    c = 2.0 * math.atan2(math.sqrt(a), math.sqrt(1.0 - a))
+    
+    distance = R * c
+    return distance
+
 
 # MARK ATTENDANCE
 
@@ -31,7 +51,11 @@ async def mark_attendance(data: dict):
         "studentEmail",
         "subject",
         "sessionId",
-        "createdAt"
+        "createdAt",
+        "studentLat",
+        "studentLon",
+        "teacherLat",
+        "teacherLon"
     ]
 
     for field in required_fields:
@@ -62,6 +86,32 @@ async def mark_attendance(data: dict):
         return {
             "message":
             "Attendance Already Marked"
+        }
+
+    # =========================
+    # GEOFENCING CHECK
+    # =========================
+
+    distance = calculate_haversine_distance(
+        data["teacherLat"], data["teacherLon"],
+        data["studentLat"], data["studentLon"]
+    )
+    
+    data["distanceMeters"] = round(distance, 2)
+
+    if distance > 20.0:
+
+        data["status"] = "Absent"
+        
+        data["scannedAt"] = datetime.now(
+            timezone.utc
+        ).isoformat()
+        
+        attendance_collection.insert_one(data)
+        
+        return {
+            "message": f"Proxy Detected! You are too far from the classroom ({round(distance, 1)}m away). Marked as Absent.",
+            "status": "Absent"
         }
 
     # =========================
