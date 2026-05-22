@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DashboardLayout from "../../components/Layout/DashboardLayout";
+import DashboardLayout from "../../components/Layout/Temp";
 
 function TeacherDashboard() {
   const [allRecords, setAllRecords] = useState([]);
@@ -20,7 +20,9 @@ function TeacherDashboard() {
     const fetchAttendanceData = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://127.0.0.1:8000/attendance/all");
+        const response = await fetch(
+          "https://digiattend-backend.onrender.com/attendance/all",
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch database records");
         }

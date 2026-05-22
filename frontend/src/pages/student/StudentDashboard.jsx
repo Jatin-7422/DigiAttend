@@ -34,7 +34,7 @@ function StudentDashboard() {
         setLoading(true);
         setError(null);
         const response = await fetch(
-          `http://127.0.0.1:8000/attendance/student/${uid}`,
+          `https://digiattend-backend.onrender.com/attendance/student/${uid}`,
         );
 
         if (!response.ok) {

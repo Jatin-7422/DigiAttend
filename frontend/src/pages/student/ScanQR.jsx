@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Html5QrcodeScanner } from "html5-qrcode";
 
-import DashboardLayout from "../../components/Layout/DashboardLayout";
+import DashboardLayout from "../../components/Layout/Temp";
 
 import axios from "axios";
 
@@ -57,7 +57,7 @@ function ScanQR() {
           // SEND DATA TO FASTAPI BACKEND
 
           const response = await axios.post(
-            "http://127.0.0.1:8000/attendance/mark",
+            "https://digiattend-backend.onrender.com/attendance/mark",
             {
               studentName: userData.name,
 

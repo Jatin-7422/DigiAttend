@@ -1,4 +1,4 @@
-import DashboardLayout from "../../components/Layout/DashboardLayout";
+import DashboardLayout from "../../components/Layout/Temp";
 
 function ManageUsers() {
   return (

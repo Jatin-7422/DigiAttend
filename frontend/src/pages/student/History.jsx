@@ -23,7 +23,7 @@ function History() {
         setHistoryLoading(true);
         setHistoryError(null);
         const response = await fetch(
-          `http://127.0.0.1:8000/attendance/student/${studentUID}`,
+          `https://digiattend-backend.onrender.com/attendance/student/${studentUID}`,
         );
 
         if (!response.ok) {
