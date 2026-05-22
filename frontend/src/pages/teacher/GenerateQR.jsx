@@ -22,11 +22,13 @@ function GenerateQR() {
     }
 
     // Create formal attendance session payload
+    const currentTime = new Date().toISOString();
+
     const attendanceSession = {
       subject,
-      timestamp: new Date().toISOString(),
+      timestamp: currentTime,
       sessionId: Math.random().toString(36).substring(2, 10),
-      createdAt: new Date().toISOString(),
+      createdAt: currentTime,
     };
 
     // Convert object → JSON string payload for the QR Scanner matrix
