@@ -26,6 +26,7 @@ function GenerateQR() {
       subject,
       timestamp: new Date().toISOString(),
       sessionId: Math.random().toString(36).substring(2, 10),
+      createdAt: new Date().toISOString(),
     };
 
     // Convert object → JSON string payload for the QR Scanner matrix
