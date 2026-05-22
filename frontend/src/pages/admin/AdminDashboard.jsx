@@ -1,4 +1,4 @@
-import DashboardLayout from "../../components/Layout/DashboardLayout";
+import DashboardLayout from "../../components/Layout/DashboardLayout.jsx";
 function AdminDashboard() {
   return (
     <DashboardLayout role="admin">

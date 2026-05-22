@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DashboardLayout from "../../components/Layout/DashboardLayout";
+import DashboardLayout from "../../components/Layout/DashboardLayout.jsx";
 // Import auth directly from your main firebase configuration file
 import { auth } from "../../services/firebase";
 
