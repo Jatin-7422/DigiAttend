@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DashboardLayout from "../../components/layout/DashboardLayout";
+import DashboardLayout from "../../components/Layout/Temp";
 
 function AttendanceTable() {
   const [allRecords, setAllRecords] = useState([]);

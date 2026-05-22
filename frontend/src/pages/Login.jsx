@@ -42,8 +42,8 @@ function Login() {
       {/* LEFT SIDE */}
 
       <div className="login-left">
+        <img src="/logo.png" alt="DigiAttend Logo" className="login-logo" />
         <h1>DigiAttend</h1>
-
         <p>Smart QR Based Attendance Management System</p>
       </div>
 
